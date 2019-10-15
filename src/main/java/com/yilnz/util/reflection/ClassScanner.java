@@ -31,8 +31,8 @@ public class ClassScanner implements ApplicationContextAware {
     public static void main(String[] args) {
         final List<Class> classes = scanPackcage("com.yilnz.util");
         System.out.println(classes);
-//        final List<String> parameterNames = new ClassScanner(ClassScanner.class,).getMethodParameterNames("getReflectionsByClassName");
-//        System.out.println(parameterNames);
+        final List<String> parameterNames = ClassScanner.getMethodParameterNames(ClassScanner.class, "getMethodParameterNames");
+        System.out.println(parameterNames);
     }
 
     public static List<Class> scanPackage(ApplicationContext context, String packageName) {

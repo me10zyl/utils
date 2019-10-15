@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:each="api : ${apisNames}">
+    <a th:text="${api.name}" th:href="${'test/' + api.name + '?fullClassName=' + api.fullClassName}">
+    </a>
+</div>
+</body>
+</html>
+

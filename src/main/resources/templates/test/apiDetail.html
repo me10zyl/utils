@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div>
+    <h1 th:text="${name}"></h1>
+    <ol>
+        <li th:each="m : ${methods}">
+            <div th:inline="text"><a th:href="${'type/' + m.returnType}" th:inline="text">[[${m.returnType}]]</a> <a th:href="${'method?clazz=' + m.clazz + '&method=' + m.name}" th:inline="text">[[${m.name}]]</a></div>
+        </li>
+    </ol>
+</div>
+</body>
+</html>
