@@ -1,6 +1,7 @@
 package com.yilnz.util.reflection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReflectionUtil {
@@ -11,10 +12,10 @@ public class ReflectionUtil {
 
     public static List<Class<?>> getSuperClasses(Class clazz){
         List<Class<?>> classList = new ArrayList<>();
-        Class tmp;
-        while ((tmp = clazz.getSuperclass()) != null){
+        Class tmp = clazz.getSuperclass();
+        do{
             classList.add(tmp);
-        }
+        }while ((tmp = tmp.getSuperclass()) != null);
         return classList;
     }
 }
