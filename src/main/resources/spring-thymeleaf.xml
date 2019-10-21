@@ -12,15 +12,14 @@
 
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/" />
-        <property name="suffix" value="" />
+        <property name="prefix" value="classpath:/templates/" />
+        <property name="suffix" value=".html" />
         <property name="templateMode" value="HTML5" />
-        <property name="cacheable" value="false" />
     </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/" />
+        <property name="prefix" value="classpath:/templates/" />
         <property name="suffix" value=".jsp" />
         <property name="order" value="2" />
         <property name="viewNames" value="*jsp" />
@@ -31,12 +30,11 @@
         <property name="templateResolver" ref="templateResolver" />
     </bean>
 
-    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver" id="thymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
         <!-- NOTE 'order' and 'viewNames' are optional -->
         <property name="order" value="1" />
-        <property name="viewNames" value="*.html,*.xhtml" />
+        <!--<property name="viewNames" value="*.html,*.xhtml" />-->
+        <property name="cache" value="false"/>
     </bean>
-
-    <bean class="com.yilnz.util.reflection.ClassScanner"/>
 </beans>

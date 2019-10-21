@@ -58,7 +58,7 @@ public class ClassScanner implements ApplicationContextAware {
             if (method == null) {
                 return null;
             }
-            if (clazz.isInterface()) {
+            if (clazz.isInterface() && applicationContext != null) {
                 clazz = applicationContext.getBean(clazz).getClass();
                 method = clazz.getMethod(method.getName(), method.getParameterTypes());
             }

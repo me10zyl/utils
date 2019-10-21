@@ -14,11 +14,45 @@ public class AMethod {
     private String clazz;
     private List<AParam> params;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public AType getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(AType returnType) {
+        this.returnType = returnType;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    public List<AParam> getParams() {
+        return params;
+    }
+
+    public void setParams(List<AParam> params) {
+        this.params = params;
+    }
+
     public String getParamsJson() {
         Map<String, Object> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder("{");
         params.forEach(e -> {
-            map.put(e.getName(), e.getType().getJson());
+            sb.append(e.getName() + ":" + e.getType().getJson());
         });
-        return JSON.toJSONString(map);
+        sb.append("}");
+        return sb.toString();
     }
 }

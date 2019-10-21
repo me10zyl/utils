@@ -32,7 +32,7 @@ public class TestController {
             return aapi;
         }).collect(Collectors.toList());
         model.addAttribute("apisNames", apiNames);
-        return "test/index.html";
+        return "test/index";
     }
 
     @RequestMapping("/test/{apiName}")
@@ -44,7 +44,7 @@ public class TestController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return "test/apiDetail.html";
+        return "test/apiDetail";
     }
 
     private List<AMethod> getaMethods(@RequestParam String fullClassName) throws ClassNotFoundException {
@@ -85,6 +85,6 @@ public class TestController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return "test/apiMethod.html";
+        return "test/apiMethod";
     }
 }

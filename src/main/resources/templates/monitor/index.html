@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Monitor</title>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr th:each="bean : ${beans}">
+                <td th:text="${bean.key}"></td>
+                <td th:text="${bean.value + 'ms'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

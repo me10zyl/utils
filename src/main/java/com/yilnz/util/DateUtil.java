@@ -1,5 +1,6 @@
 package com.yilnz.util;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,5 +33,9 @@ public class DateUtil {
 
     public static void main(String[] args) {
         System.out.println(DateUtil.formatDate(new Date()));
+    }
+
+    public static String now() {
+        return new DateTimeFormatterBuilder().toString();
     }
 }
