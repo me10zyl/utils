@@ -13,7 +13,7 @@ spring config xml:
     </beans>
 ```
 
-run with jvm args: java xxx.jar -noverify -XX:TieredStopAtLevel=1 -Dspring.jmx.enabled=false -Dspring.profiles.active=dev
+run with jvm args:  -noverify -XX:TieredStopAtLevel=1 -Dspring.jmx.enabled=false -Dspring.profiles.active=dev
 
 the basic theory speed up spring is lazy mode and remove slowly services. 
 
