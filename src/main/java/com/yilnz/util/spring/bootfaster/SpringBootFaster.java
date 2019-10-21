@@ -15,6 +15,7 @@ import java.util.List;
  * JVM参数设置 -noverify -XX:TieredStopAtLevel=1 -Dspring.jmx.enabled=false -Dspring.profiles.active=dev
  *  <beans profile="dev">
  *         <bean class="com.yilnz.util.spring.bootfaster.SpringBootFaster" />
+ *         <bean class="com.yilnz.util.spring.bootfaster.SpringBootConstructerFaster"/>
  *  </beans>
  */
 public class SpringBootFaster implements BeanFactoryPostProcessor {
