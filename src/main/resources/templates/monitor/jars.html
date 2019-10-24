@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Monitor</title>
+    <style>
+        .repeat{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr th:each="bean : ${beans}">
+                <td th:text="${bean.url}" th:class="${bean.repeat ? 'repeat' : ''}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
