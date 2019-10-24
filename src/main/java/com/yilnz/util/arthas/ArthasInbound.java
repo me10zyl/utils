@@ -22,11 +22,12 @@ public class ArthasInbound {
                 f = urL.getFile();
             }
         }
-        logger.info("arthas inbound started at http://127.0.0.1:9999");
+
         String finalF = f;
         if (finalF != null) {
             new Thread(()->{
                 try {
+                    logger.info("arthas inbound started at http://127.0.0.1:9999");
                     final Runtime runtime = Runtime.getRuntime();
                     System.out.println(finalF);
                     final Process exec = runtime.exec("java -jar " + finalF + " com.taobao.arthas.boot.Bootstrap", new String[]{String.valueOf(getProcessId()), "--http-port=9999", "--telnet-port=65523"});
@@ -36,6 +37,8 @@ public class ArthasInbound {
                     while ((str = br.readLine()) != null) {
                         System.out.println(str);
                     }
+                    br.close();
+                    exec.destroy();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
