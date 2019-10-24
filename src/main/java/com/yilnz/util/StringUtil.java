@@ -1,5 +1,6 @@
 package com.yilnz.util;
 
+import com.google.common.base.CaseFormat;
 import com.yilnz.util.reflection.ClassScanner;
 import com.yilnz.util.reflection.ReflectionUtil;
 
@@ -11,7 +12,9 @@ import java.util.List;
 
 public class StringUtil {
 
-
+    public static String camelCaseToUnderScore(String fieldName){
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);
+    }
 
     public static String toLowerCaseLetter1(String str){
         return str.substring(0, 1).toLowerCase() + str.substring(1);
