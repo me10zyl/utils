@@ -31,7 +31,11 @@ public class ReflectionUtil {
 
     public static List<String> getGetterFields(Class<?> clazz, boolean includeSuper){
         List<Method> list = getGetterMethods(clazz,includeSuper);
-        return list.stream().map(e-> StringUtil.toLowerCaseLetter1(e.getName().substring(3))).collect(Collectors.toList());
+        return getGetterFields(list);
+    }
+
+    public static List<String> getGetterFields(List<Method> methodList) {
+        return methodList.stream().map(e -> StringUtil.toLowerCaseLetter1(e.getName().substring(3))).collect(Collectors.toList());
     }
 
     public static List<Method> getGetterMethods(Class<?> clazz) {
