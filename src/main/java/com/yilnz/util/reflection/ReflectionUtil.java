@@ -50,8 +50,8 @@ public class ReflectionUtil {
                 list.add(declaredMethod);
             }
         }
-        if(includeSuper && clazz.getSuperclass() != null){
-            final List<Method> getterMethods = getGetterMethods(clazz.getSuperclass(), false);
+        if(includeSuper && clazz.getSuperclass() != null && !clazz.getSuperclass().equals(Object.class)){
+            final List<Method> getterMethods = getGetterMethods(clazz.getSuperclass(), true);
             list.addAll(getterMethods);
         }
         return list;
