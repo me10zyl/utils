@@ -20,6 +20,10 @@ public class StringUtil {
         return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
+    public static String toUpperCaseLetter1(String str){
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     public static String classToJsonString(Class<?> clazz){
         final List<Method> setters = getSetters(clazz);
         StringBuilder sb = new StringBuilder("{");
