@@ -1,16 +1,30 @@
 package com.yilnz.util;
 
 import com.google.common.base.CaseFormat;
-import com.yilnz.util.reflection.ClassScanner;
 import com.yilnz.util.reflection.ReflectionUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class StringUtil {
+
+    public static boolean isBlank(String str){
+        return StringUtils.isBlank(str);
+    }
+
+    public static boolean isAnyBlank(String... str){
+        boolean blank = false;
+        for (String s : str) {
+            if(isBlank(s)){
+                blank = true;
+                break;
+            }
+        }
+        return blank;
+    }
 
     public static String camelCaseToUnderScore(String fieldName){
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);

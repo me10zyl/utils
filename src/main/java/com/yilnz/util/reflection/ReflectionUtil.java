@@ -38,7 +38,7 @@ public class ReflectionUtil {
 
     public static Method getSetterMethodFromGetter(Method getterMethod){
         try {
-            return getterMethod.getDeclaringClass().getMethod("set" +StringUtil.toUpperCaseLetter1(getField(getterMethod)));
+            return getterMethod.getDeclaringClass().getMethod("set" +StringUtil.toUpperCaseLetter1(getField(getterMethod)), getterMethod.getReturnType());
         } catch (NoSuchMethodException e) {
             logger.error("get setter err", e);
         }
