@@ -1,6 +1,8 @@
 package com.yilnz.util.reflection;
 
 import com.yilnz.util.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.stream.Collectors;
 
 
 public class ReflectionUtil {
+    private static final Logger logger = LoggerFactory.getLogger(ReflectionUtil.class);
 
     public static boolean isChildOfType(Class childClass, Class superClass){
         final List<Class<?>> superClasses = getSuperClasses(childClass);
@@ -27,6 +30,19 @@ public class ReflectionUtil {
 
     public static List<String> getGetterFields(Class<?> clazz){
         return getGetterFields(clazz, false);
+    }
+
+    public static String getField(Method getMethod){
+        return StringUtil.toLowerCaseLetter1(getMethod.getName().substring(3));
+    }
+
+    public static Method getSetterMethodFromGetter(Method getterMethod){
+        try {
+            return getterMethod.getDeclaringClass().getMethod("set" +StringUtil.toUpperCaseLetter1(getField(getterMethod)));
+        } catch (NoSuchMethodException e) {
+            logger.error("get setter err", e);
+        }
+        return null;
     }
 
     public static List<String> getGetterFields(Class<?> clazz, boolean includeSuper){
