@@ -7,7 +7,7 @@
     <groupId>com.yilnz</groupId>
     <artifactId>utils</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <build>
         <plugins>
             <plugin>
@@ -87,6 +87,11 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.1</version>
+		</dependency>
     </dependencies>
 
     <distributionManagement>

@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
 import java.time.temporal.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,25 @@ public class DateUtil {
             }
         }).plus(-1, ChronoUnit.DAYS));
     }
+
+    public static Date getDateZeroClock(Date date){
+		final Calendar instance = Calendar.getInstance();
+		instance.setTime(date);
+		instance.set(Calendar.HOUR_OF_DAY, 0);
+		instance.set(Calendar.MINUTE, 0);
+		instance.set(Calendar.SECOND, 0);
+		instance.set(Calendar.MILLISECOND, 0);
+		return instance.getTime();
+	}
+
+	public static Date getDateLastTime(Date date){
+		final Calendar instance = Calendar.getInstance();
+		instance.setTime(date);
+		instance.set(Calendar.HOUR_OF_DAY, 23);
+		instance.set(Calendar.MINUTE, 59);
+		instance.set(Calendar.SECOND, 59);
+		return instance.getTime();
+	}
 
     public static String formatDate(Date date){
         final LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());

@@ -5,11 +5,35 @@ import com.yilnz.util.reflection.ReflectionUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtil {
+
+	public static String exceptionToString(Exception exception){
+		final StackTraceElement[] stackTrace = exception.getStackTrace();
+		StringBuilder sb = new StringBuilder();
+		for (StackTraceElement stackTraceElement : stackTrace) {
+			sb.append(stackTraceElement.toString()).append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
+
+	public static String format(String message, Object... arguments){
+		final Matcher matcher = Pattern.compile("\\{\\}").matcher(message);
+		int i = 0;
+		String handleMsg = message;
+		while (matcher.find()){
+			handleMsg = matcher.replaceFirst("{" + i + "}");
+			matcher.reset(handleMsg);
+			i++;
+		}
+		return MessageFormat.format(handleMsg, arguments);
+	}
 
     public static boolean isBlank(String str){
         return StringUtils.isBlank(str);
