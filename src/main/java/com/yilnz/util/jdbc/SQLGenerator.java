@@ -1,6 +1,6 @@
 package com.yilnz.util.jdbc;
 
-import com.yilnz.util.StringUtil;
+import com.yilnz.util.base.StringUtil;
 import com.yilnz.util.reflection.ReflectionUtil;
 
 import java.lang.reflect.Method;

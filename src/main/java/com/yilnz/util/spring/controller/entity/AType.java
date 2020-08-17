@@ -1,6 +1,6 @@
 package com.yilnz.util.spring.controller.entity;
 
-import com.yilnz.util.StringUtil;
+import com.yilnz.util.base.StringUtil;
 import lombok.Data;
 
 @Data

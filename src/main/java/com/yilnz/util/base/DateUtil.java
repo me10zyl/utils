@@ -1,4 +1,4 @@
-package com.yilnz.util;
+package com.yilnz.util.base;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.FormatStyle;
 import java.time.temporal.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,11 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DateUtil {
-    public static Date getYesterDayNow(){
+    public static Date getYesterdayNow(){
         return Date.from(Instant.now().plus(-1, ChronoUnit.DAYS));
     }
 
-    public static Date getYesterDay0Hour(){
+    public static Date getYesterday0Hour(){
         return Date.from(Instant.now().with(new TemporalAdjuster() {
             @Override
             public Temporal adjustInto(Temporal temporal) {

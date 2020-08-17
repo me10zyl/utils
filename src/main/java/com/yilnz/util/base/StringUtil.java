@@ -1,4 +1,4 @@
-package com.yilnz.util;
+package com.yilnz.util.base;
 
 import com.google.common.base.CaseFormat;
 import com.yilnz.util.reflection.ReflectionUtil;
