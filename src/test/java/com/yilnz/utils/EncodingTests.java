@@ -1,8 +1,6 @@
 package com.yilnz.utils;
 
-import com.yilnz.util.base.EncodingUtil;
-import org.apache.commons.codec.binary.Hex;
-import org.springframework.util.DigestUtils;
+import com.yilnz.bluesteel.encoding.EncodingUtil;
 
 import java.math.BigInteger;
 

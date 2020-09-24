@@ -8,8 +8,8 @@ Speed up boot time, use this only dev profile.
 spring config xml:
 ```xml
  <beans profile="dev">
-        <bean class="com.yilnz.util.spring.bootfaster.SpringBootFaster" />
-        <bean class="com.yilnz.util.spring.bootfaster.SpringBootConstructerFaster"/>
+        <bean class="com.yilnz.bluesteel.spring.bootfaster.SpringBootFaster" />
+        <bean class="com.yilnz.bluesteel.spring.bootfaster.SpringBootConstructerFaster"/>
     </beans>
 ```
 
@@ -21,8 +21,8 @@ the basic theory speed up spring is lazy mode and remove slowly services.
 
 ```xml
      <beans profile="dev">
-        <bean class="com.yilnz.util.spring.bootmonitor.BootMonitorConfiguration" />
-        <bean class="com.yilnz.util.spring.quickconf.ThymeleafConfiguration" />
+        <bean class="com.yilnz.bluesteel.spring.bootmonitor.BootMonitorConfiguration" />
+        <bean class="com.yilnz.bluesteel.spring.quickconf.ThymeleafConfiguration" />
      </beans>
 ```
 
@@ -30,7 +30,7 @@ open the url: http://localhost:port/utils/monitor to view services boot time,
 find out max boot time service and add to removedClass property of SpringBootFaster class.
 
 ```xml
-<bean class="com.yilnz.util.spring.bootfaster.SpringBootFaster">
+<bean class="com.yilnz.bluesteel.spring.bootfaster.SpringBootFaster">
             <property name="removedClass">
                 <list>
                     <value>com.company.service.bootVerySlowlyService</value>
