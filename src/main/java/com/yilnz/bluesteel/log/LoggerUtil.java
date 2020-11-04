@@ -30,6 +30,24 @@ public class LoggerUtil {
      * @return 日志者
      */
     public static org.slf4j.Logger createTimeBasedRollingFileLogger(String name, boolean addConsole) {
+        Logger templateLogger = (Logger) LoggerFactory.getLogger(LoggerUtil.class);
+        LoggerContext loggerContext = templateLogger.getLoggerContext();
+        org.slf4j.Logger logger = createTimeBasedRollingFileLogger(name, addConsole, loggerContext.getProperty("LOG_HOME"), Integer.parseInt(loggerContext.getProperty("MAX_HISTORY")));
+        return logger;
+    }
+
+    /**
+     * 创建基于时间滚动日志文件
+     *
+     * @param name       的名字
+     * @param addConsole 添加控制台
+     * @param logHome    日志回家
+     * @param maxHistory 马克思的历史
+     * @return {@link Logger }
+     * @author zyl
+     * @date 2020/11/04
+     */
+    public static org.slf4j.Logger createTimeBasedRollingFileLogger(String name, boolean addConsole, String logHome, Integer maxHistory){
         Logger logger = null;
         try {
             Logger templateLogger = (Logger) LoggerFactory.getLogger(LoggerUtil.class);
@@ -45,8 +63,8 @@ public class LoggerUtil {
 
             TimeBasedRollingPolicy policy = new TimeBasedRollingPolicy();
             policy.setContext(loggerContext);
-            policy.setFileNamePattern(loggerContext.getProperty("LOG_HOME") + "/" + name + "-%d{yyyy-MM-dd}.log");
-            policy.setMaxHistory(Integer.parseInt(loggerContext.getProperty("MAX_HISTORY")));
+            policy.setFileNamePattern(logHome + "/" + name + "-%d{yyyy-MM-dd}.log");
+            policy.setMaxHistory(maxHistory);
             policy.setParent(rollingFileAppender);
             policy.start();
 
@@ -56,7 +74,7 @@ public class LoggerUtil {
             filter.start();
 
             rollingFileAppender.setContext(loggerContext);
-            rollingFileAppender.setFile(loggerContext.getProperty("LOG_HOME") + "/" + name + ".log");
+            rollingFileAppender.setFile(logHome + "/" + name + ".log");
             rollingFileAppender.setRollingPolicy(policy);
             rollingFileAppender.setName(name);
             rollingFileAppender.setEncoder(encoder);
