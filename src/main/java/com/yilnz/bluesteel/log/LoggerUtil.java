@@ -7,6 +7,7 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.filter.ThresholdFilter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
+import ch.qos.logback.core.ConsoleAppender;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 import lombok.extern.slf4j.Slf4j;
@@ -82,7 +83,17 @@ public class LoggerUtil {
             rollingFileAppender.start();
 
             logger = loggerContext.getLogger(name);
-            Appender<ILoggingEvent> console = loggerContext.getLogger("root").getAppender("CONSOLE");
+            ConsoleAppender console = (ConsoleAppender) loggerContext.getLogger("root").getAppender("CONSOLE");
+            if(console == null){
+                console = (ConsoleAppender) loggerContext.getLogger("root").getAppender("console");
+                if(console == null) {
+                    console = new ConsoleAppender();
+                    console.setContext(loggerContext);
+                    console.setEncoder(encoder);
+                    console.addFilter(filter);
+                    console.start();
+                }
+            }
             logger.addAppender(rollingFileAppender);
             if(addConsole){
                 logger.addAppender(console);

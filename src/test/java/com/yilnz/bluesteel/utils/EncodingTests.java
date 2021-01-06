@@ -1,4 +1,4 @@
-package com.yilnz.utils;
+package com.yilnz.bluesteel.utils;
 
 import com.yilnz.bluesteel.encoding.EncodingUtil;
 
