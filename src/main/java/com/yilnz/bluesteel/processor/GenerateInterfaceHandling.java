@@ -1,5 +1,6 @@
 package com.yilnz.bluesteel.processor;
 
+/*
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.JCTree.JCAnnotation;
 import com.sun.tools.javac.util.List;
@@ -22,3 +23,4 @@ public class GenerateInterfaceHandling extends JavacAnnotationHandler<GenerateIn
     }
 }
 
+*/
