@@ -5,8 +5,6 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.filter.ThresholdFilter;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.ConsoleAppender;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
@@ -58,7 +56,7 @@ public class LoggerUtil {
 
             PatternLayoutEncoder encoder = new PatternLayoutEncoder();
             encoder.setContext(loggerContext);
-            encoder.setPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] [%X{requestId}] %-40.40logger{39} %L : %m%n -%rEx");
+            encoder.setPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] [%X{requestId}] %-40.40logger{39} %L : %m%n");
             encoder.setCharset(StandardCharsets.UTF_8);
             encoder.start();
 

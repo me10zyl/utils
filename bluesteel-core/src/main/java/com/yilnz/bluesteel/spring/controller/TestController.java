@@ -1,10 +1,10 @@
 package com.yilnz.bluesteel.spring.controller;
 
+import com.yilnz.bluesteel.reflection.ClassScanner;
 import com.yilnz.bluesteel.spring.controller.entity.AAPI;
 import com.yilnz.bluesteel.spring.controller.entity.AMethod;
 import com.yilnz.bluesteel.spring.controller.entity.AParam;
 import com.yilnz.bluesteel.spring.controller.entity.AType;
-import com.yilnz.bluesteel.reflection.ClassScanner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

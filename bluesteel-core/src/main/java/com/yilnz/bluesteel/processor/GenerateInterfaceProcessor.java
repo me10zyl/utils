@@ -1,30 +1,22 @@
+
 package com.yilnz.bluesteel.processor;
 
-
-import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.TypeDeclaration;
+/*
 import com.google.auto.service.AutoService;
 import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
 import javassist.NotFoundException;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.ExecutableType;
 import javax.lang.model.type.ReferenceType;
-import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.JavaFileObject;
 import javax.tools.StandardLocation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,11 +45,13 @@ public class GenerateInterfaceProcessor extends AbstractProcessor {
     }
 
     private String transform(CharSequence data, String simpleName){
-      /*  CompilationUnit parse = StaticJavaParser.parse((String) data);
+      */
+/*  CompilationUnit parse = StaticJavaParser.parse((String) data);
         Optional<TypeDeclaration<?>> first = parse.getTypes().stream().filter(e -> e.getName().equals(simpleName)).findFirst();
         if(first.isPresent()){
             first.get().add
-        }*/
+        }*//*
+
         Pattern compile = Pattern.compile("class\\s*" + simpleName);
         Matcher matcher = compile.matcher(data);
         StringBuffer sb = new StringBuffer();
@@ -81,10 +75,12 @@ public class GenerateInterfaceProcessor extends AbstractProcessor {
         writer.append(transform);
         writer.close();
         //processingEnv.getFiler().getResource()
-       /* ClassPool classPool = ClassPool.getDefault();
+       */
+/* ClassPool classPool = ClassPool.getDefault();
         CtClass ctClass = classPool.get(className);
         ctClass.addInterface(classPool.get(className+"Dubbo"));
-        ctClass.writeFile();*/
+        ctClass.writeFile();*//*
+
     }
 
     private void writeFile(String className) throws IOException {
@@ -108,3 +104,4 @@ public class GenerateInterfaceProcessor extends AbstractProcessor {
         }
     }
 }
+*/
