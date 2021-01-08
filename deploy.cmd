@@ -1,0 +1,1 @@
+mvn clean deploy -DskipTests -DrepositoryAddress="192.168.4.13:8081"

@@ -6,7 +6,7 @@
 
     <groupId>com.yilnz</groupId>
     <artifactId>bluesteel</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <version>0.1.5</version>
     <build>
         <plugins>
@@ -30,9 +30,12 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>bluesteel-bom</module>
+    </modules>
 
     <properties>
-        <repositoryAddress>some_private_url</repositoryAddress>
+        <repositoryAddress>192.168.4.13:8081</repositoryAddress>
         <guava.version>27.0.1-jre</guava.version>
     </properties>
 

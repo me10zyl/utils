@@ -58,7 +58,7 @@ public class LoggerUtil {
 
             PatternLayoutEncoder encoder = new PatternLayoutEncoder();
             encoder.setContext(loggerContext);
-            encoder.setPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] [%X{requestId}] %-40.40logger{39} %L : %m%n -%wEx");
+            encoder.setPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%t] [%X{requestId}] %-40.40logger{39} %L : %m%n -%rEx");
             encoder.setCharset(StandardCharsets.UTF_8);
             encoder.start();
 
