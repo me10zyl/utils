@@ -18,6 +18,17 @@ public class ReflectionUtil {
         return superClasses.stream().anyMatch(e -> e.equals(superClass));
     }
 
+    public static List<Method> getAllSetterMethods(Class clazz){
+        List<Method> fieldList = new ArrayList<>();
+        Method[] fields = clazz.getMethods();
+        for (Method m : fields) {
+            if(m.getName().startsWith("set")){
+                fieldList.add(m);
+            }
+        }
+        return fieldList;
+    }
+
     public static List<Class<?>> getSuperClasses(Class clazz){
         List<Class<?>> classList = new ArrayList<>();
         Class tmp = clazz;

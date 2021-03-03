@@ -38,10 +38,16 @@
     <properties>
         <repositoryAddress>192.168.4.13:8081</repositoryAddress>
         <guava.version>27.0.1-jre</guava.version>
+        <hutool.version>5.4.7</hutool.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.auto.service</groupId>
                 <artifactId>auto-service</artifactId>
