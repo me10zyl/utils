@@ -24,13 +24,17 @@ public class MockUtil {
     }
 
     public static  <T> T mock(Class<T> type) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return mock(type, "", "");
+    }
+
+    public static  <T> T mock(Class<T> type, String prefix, String suffix) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         try {
             T t = type.getConstructor().newInstance();
             List<Method> setterMethods = ReflectionUtil.getAllSetterMethods(type);
             for (Method setterMethod : setterMethods) {
                 Class<?>[] parameterTypes = setterMethod.getParameterTypes();
                 if(parameterTypes[0].equals(String.class)){
-                    setterMethod.invoke(t, randomString());
+                    setterMethod.invoke(t, prefix + randomString() + suffix);
                 }else if(parameterTypes[0].equals(Date.class)){
                     setterMethod.invoke(t, new Date());
                 }else if(parameterTypes[0].equals(Integer.class)){
