@@ -1,4 +1,4 @@
-package com.yilnz.bluesteel.mockito;
+package com.yilnz.bluesteel.springbootplus.tests.mockito;
 
 import cn.hutool.core.util.RandomUtil;
 import com.yilnz.bluesteel.reflection.ReflectionUtil;

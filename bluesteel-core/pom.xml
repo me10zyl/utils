@@ -5,7 +5,7 @@
     <parent>
         <artifactId>bluesteel-parent</artifactId>
         <groupId>com.yilnz</groupId>
-        <version>0.1.7</version>
+        <version>0.1.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -127,6 +127,30 @@
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-annotation</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.yilnz</groupId>
+            <artifactId>surfing</artifactId>
+            <version>0.1.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.2</version>
             <scope>provided</scope>
         </dependency>
         <!-- 已有库 -->
