@@ -1,1 +1,1 @@
-mvn clean deploy -DskipTests -DrepositoryAddress="192.168.4.13:8081"
+mvn clean deploy -DskipTests -DrepositoryAddress="http://192.168.4.13:8081/nexus/content/repositories/releases"
