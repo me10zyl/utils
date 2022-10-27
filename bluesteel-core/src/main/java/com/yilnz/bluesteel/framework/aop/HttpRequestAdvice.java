@@ -2,6 +2,8 @@ package com.yilnz.bluesteel.framework.aop;
 
 
 import com.yilnz.bluesteel.framework.Constants;
+import com.yilnz.bluesteel.framework.anotation.NoRequestLog;
+import lombok.Setter;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
@@ -56,6 +58,14 @@ public class HttpRequestAdvice implements MethodInterceptor {
         return proceed;
     }*/
 
+
+    public interface Listener{
+        String getUserInfo(HttpServletRequest request);
+    }
+
+    @Setter
+    private Listener listener;
+
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -76,15 +86,17 @@ public class HttpRequestAdvice implements MethodInterceptor {
         }catch (Throwable e){
             exception = e;
         }finally {
-            logger.info("\n----------------请求返回["+globalTraceId+"]----------------\n" +
-                    "["+globalTraceId+"]请求URL：" + url + "\n" +
-                    "["+globalTraceId+"]请求用户:" + request.getHeader("Authorization") + "\n" +
-                    "["+globalTraceId+"]控制器:" + methodInvocation.getThis().getClass() + "#" + methodInvocation.getMethod().getName() + "\n" +
-                    "["+globalTraceId+"]参数:" + sb.toString() + "\n" +
-                    "["+globalTraceId+"]" + (exception == null ? "返回:" + proceed : "异常:" + exception) + "\n" +
-                    "================请求返回["+globalTraceId+"]================");
-            if (exception != null) {
-                throw exception;
+            if(!methodInvocation.getMethod().isAnnotationPresent(NoRequestLog.class)) {
+                logger.info("\n----------------请求返回[" + globalTraceId + "]----------------\n" +
+                        "[" + globalTraceId + "]请求URL：" + url + "\n" +
+                        "[" + globalTraceId + "]请求用户:" + (listener != null ? listener.getUserInfo(request) : request.getHeader("Authorization")) + "\n" +
+                        "[" + globalTraceId + "]控制器:" + methodInvocation.getThis().getClass() + "#" + methodInvocation.getMethod().getName() + "\n" +
+                        "[" + globalTraceId + "]参数:" + sb.toString() + "\n" +
+                        "[" + globalTraceId + "]" + (exception == null ? "返回:" + proceed : "异常:" + exception) + "\n" +
+                        "================请求返回[" + globalTraceId + "]================");
+                if (exception != null) {
+                    throw exception;
+                }
             }
         }
         return proceed;
