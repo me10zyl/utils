@@ -26,9 +26,6 @@ public class GlobalTraceFilter implements Filter {
         MDC.put(Constants.MDC_GLOBAL_TRACE_ID, traceId);
         request.setAttribute(Constants.REQ_GLOBAL_TRACE_ID, traceId);
         filterChain.doFilter(request, response);
-        Object attribute = request.getAttribute(Constants.REQ_GLOBAL_TRACE_ID);
-        if(attribute != null) {
-            ((HttpServletResponse)response).setHeader(Constants.X_REQUEST_ID, attribute.toString());
-        }
+        ((HttpServletResponse)response).setHeader(Constants.X_REQUEST_ID, traceId);
     }
 }
