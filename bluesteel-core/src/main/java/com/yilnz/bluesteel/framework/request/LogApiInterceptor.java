@@ -29,7 +29,6 @@ public class LogApiInterceptor extends HandlerInterceptorAdapter {
             }
     }
     public String getRawHeaders(HttpServletRequest request) {
-            String globalTraceId = (String) request.getAttribute(Constants.REQ_GLOBAL_TRACE_ID);
             StringBuffer rawHeaders = new StringBuffer();
             Enumeration headerNames = request.getHeaderNames();
             while (headerNames.hasMoreElements()) {
@@ -41,7 +40,6 @@ public class LogApiInterceptor extends HandlerInterceptorAdapter {
             return rawHeaders.toString();
     }
     public String getRawHeaders(HttpServletRequest request, HttpServletResponse response){
-            String globalTraceId = (String) request.getAttribute(Constants.REQ_GLOBAL_TRACE_ID);
             StringBuffer rawHeaders = new StringBuffer();
             Enumeration headerNames = Collections.enumeration(response.getHeaderNames());
             while (headerNames.hasMoreElements()) {
