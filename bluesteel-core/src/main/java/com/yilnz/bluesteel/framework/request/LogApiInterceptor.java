@@ -80,7 +80,7 @@ public class LogApiInterceptor extends HandlerInterceptorAdapter {
 	    LOGGER.info("<============响应体");
 	    byte[] data = new byte[wrappedResponse.rawData.size()];
 	    for (int i = 0; i < data.length; i++) {
-		data[i] = (byte) wrappedResponse.rawData.get(i);
+		    data[i] = (byte) wrappedResponse.rawData.get(i);
 	    }
 	    String responseBody = new String(data);
 	    LOGGER.info(responseBody);
