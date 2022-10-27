@@ -1,16 +1,15 @@
-package com.yilnz.bluesteel.framework;
+package com.yilnz.bluesteel.framework.aop;
 
 
+import com.yilnz.bluesteel.framework.Constants;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
 
 
 /**
@@ -77,13 +76,13 @@ public class HttpRequestAdvice implements MethodInterceptor {
         }catch (Throwable e){
             exception = e;
         }finally {
-            logger.info("\n----------------请求内容["+globalTraceId+"]----------------\n" +
+            logger.info("\n----------------请求返回["+globalTraceId+"]----------------\n" +
                     "["+globalTraceId+"]请求URL：" + url + "\n" +
                     "["+globalTraceId+"]请求用户:" + request.getHeader("Authorization") + "\n" +
                     "["+globalTraceId+"]控制器:" + methodInvocation.getThis().getClass() + "#" + methodInvocation.getMethod().getName() + "\n" +
                     "["+globalTraceId+"]参数:" + sb.toString() + "\n" +
                     "["+globalTraceId+"]" + (exception == null ? "返回:" + proceed : "异常:" + exception) + "\n" +
-                    "================请求内容["+globalTraceId+"]================");
+                    "================请求返回["+globalTraceId+"]================");
             if (exception != null) {
                 throw exception;
             }

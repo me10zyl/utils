@@ -43,6 +43,10 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
        <!-- <dependency>
             <groupId>com.sun</groupId>
             <artifactId>tools</artifactId>
