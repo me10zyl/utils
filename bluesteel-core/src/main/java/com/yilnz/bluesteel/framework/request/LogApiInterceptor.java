@@ -1,6 +1,7 @@
 package com.yilnz.bluesteel.framework.request;
 
 import com.yilnz.bluesteel.framework.Constants;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,24 @@ import java.util.Enumeration;
 
 
 public class LogApiInterceptor extends HandlerInterceptorAdapter {
+
+    public interface Listener{
+        void onPrintRequestBody(Logger logger, HttpServletRequest request, String body);
+        void onPrintResponseBody(Logger logger, HttpServletRequest request, HttpServletResponse response, String body);
+    }
+
+    @Setter
+    private Listener listener = new Listener() {
+        @Override
+        public void onPrintRequestBody(Logger logger, HttpServletRequest request, String body) {
+            logger.info(body);
+        }
+
+        @Override
+        public void onPrintResponseBody(Logger logger, HttpServletRequest request, HttpServletResponse response, String body) {
+            logger.info(body);
+        }
+    };
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogApiInterceptor.class);
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
@@ -67,22 +86,26 @@ public class LogApiInterceptor extends HandlerInterceptorAdapter {
 		    LOGGER.info("请求头============>");
             LOGGER.info(requestHeaders);
 		    LOGGER.info("请求体============>");
-		    LOGGER.info(requestBody);
+            listener.onPrintRequestBody(LOGGER, wrappedRequest, requestBody);
 	    } catch (Exception e) {
-		    LOGGER.error("ERRR", e);
+		    LOGGER.error("请求日志拦截器处理REQUEST失败", e);
 	    }
     }
     public void writeResponsePayloadAudit(HttpServletRequest req, ResettableStreamHttpServletResponse wrappedResponse){
-        String rawHeaders = getRawHeaders(req, wrappedResponse);
-	    LOGGER.info("<============响应码 " + wrappedResponse.getStatus());
-	    LOGGER.info("<============响应头");
-        LOGGER.info(rawHeaders);
-	    LOGGER.info("<============响应体");
-	    byte[] data = new byte[wrappedResponse.rawData.size()];
-	    for (int i = 0; i < data.length; i++) {
-		    data[i] = (byte) wrappedResponse.rawData.get(i);
-	    }
-	    String responseBody = new String(data);
-	    LOGGER.info(responseBody);
+        try {
+            String rawHeaders = getRawHeaders(req, wrappedResponse);
+            LOGGER.info("<============响应码 " + wrappedResponse.getStatus());
+            LOGGER.info("<============响应头");
+            LOGGER.info(rawHeaders);
+            LOGGER.info("<============响应体");
+            byte[] data = new byte[wrappedResponse.rawData.size()];
+            for (int i = 0; i < data.length; i++) {
+                data[i] = (byte) wrappedResponse.rawData.get(i);
+            }
+            String responseBody = new String(data);
+            listener.onPrintResponseBody(LOGGER, req, wrappedResponse, responseBody);
+        }catch (Exception e){
+            LOGGER.error("请求日志拦截器处理RESPONSE失败", e);
+        }
     }
 }
