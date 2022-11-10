@@ -13,14 +13,22 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RequestFilter implements Filter {
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestFilter.class);
+    private List<String> whiteList = new ArrayList<>();
 
 
     public RequestFilter(LogApiInterceptor logApiInterceptor) {
         this.logApiInterceptor = logApiInterceptor;
+    }
+
+    public RequestFilter(LogApiInterceptor logApiInterceptor, List<String> whiteList) {
+        this.logApiInterceptor = logApiInterceptor;
+        this.whiteList = whiteList;
     }
 
     LogApiInterceptor logApiInterceptor;
@@ -32,6 +40,9 @@ public class RequestFilter implements Filter {
         ResettableStreamHttpServletRequest wrappedRequest = null;
         ResettableStreamHttpServletResponse wrappedResponse = null;
         try {
+                if(whiteList.contains(((HttpServletRequest)request).getRequestURI())){
+                    return;
+                }
                 wrappedRequest = new ResettableStreamHttpServletRequest((HttpServletRequest) request);
                 wrappedResponse = new ResettableStreamHttpServletResponse((HttpServletRequest)request, (HttpServletResponse) response);
                 logApiInterceptor.writeRequestPayloadAudit(wrappedRequest);

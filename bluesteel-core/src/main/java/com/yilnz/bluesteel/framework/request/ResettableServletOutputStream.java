@@ -15,7 +15,6 @@ public class ResettableServletOutputStream extends ServletOutputStream {
 
 	private static Logger logger = LoggerFactory.getLogger(ResettableServletOutputStream.class);
 
-        @Autowired
         LogApiInterceptor logApiInterceptor;
 
         public OutputStream outputStream;
@@ -46,13 +45,14 @@ public class ResettableServletOutputStream extends ServletOutputStream {
                 this.outputStream = wrappedResponse.response.getOutputStream();
                 this.request = request;
                 this.wrappedResponse = wrappedResponse;
+                this.logApiInterceptor = logApiInterceptor;
         }
 
         @Override
         public void close() throws IOException {
                 System.out.println("** RESPONSE CLOSE **");
                 outputStream.close();
-                logApiInterceptor.writeResponsePayloadAudit(request, wrappedResponse);
+//                logApiInterceptor.writeResponsePayloadAudit(request, wrappedResponse);
         }
 
         @Override
