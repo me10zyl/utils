@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.yilnz.bluesteel.starter.conf.GlobalTraceAutoConfiguration

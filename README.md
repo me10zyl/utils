@@ -38,3 +38,12 @@ find out max boot time service and add to removedClass property of SpringBootFas
             </property>
         </bean>
 ```
+
+
+#GlobalTrace
+
+#### application.properties
+```
+globaltrace.trace-id.enable=true
+globaltrace.http-request-aspect.enable=true
+```
