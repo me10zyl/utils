@@ -4,7 +4,6 @@ import com.yilnz.bluesteel.framework.aop.HttpRequestAdvisor;
 import com.yilnz.bluesteel.framework.globaltrace.GlobalTraceFilter;
 import com.yilnz.bluesteel.starter.properties.GlobalTraceProperties;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
